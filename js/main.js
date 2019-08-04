@@ -1,6 +1,3 @@
-// * As a [role], I want [feature] because [reason].
-
-
 /*----- constants -----*/ 
 const 
 
