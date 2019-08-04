@@ -29,7 +29,7 @@
 * As a user (AAU), I will receive 2 random cards from the dealer.
 * AAU, I will see 1 of the 2 cards in the dealer's hand.
 * AAU, I want to decide to HIT and STAND
-* AAU, I either or lose depending on the sum of our hands, or dealer's hand.
+* AAU, I either win or lose depending on the sum of my hand in comparison to the sum of the dealer's hand. The sum of either hand cannot go over 21 points.
 * AUU, I can choose to play again or stop.
 
 ## Features list
