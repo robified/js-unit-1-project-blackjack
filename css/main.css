@@ -1,0 +1,66 @@
+* {
+   box-sizing: border-box;
+ }
+ 
+body {
+margin: 0;
+font-family: Helvetica;
+display: flex;
+flex-direction: column;
+align-items: center;
+justify-content: center;
+}
+
+.dealer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.dcard {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin: 20px;
+}
+
+.messaging {
+    font-size: 20px;
+    margin: 0px;
+}
+
+.pcard {
+    display: flex;
+    justify-content: center;
+    margin: 20px;
+}
+
+.player {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+footer {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 20px;
+}
+
+button {
+    margin: 5px;
+}
+
+h2 {
+    font-size: 15px;
+    margin: 5px;
+}
+
+h3 {
+    font-size: 10px;
+}
+
+h4 {
+    margin: 10px;
+}
