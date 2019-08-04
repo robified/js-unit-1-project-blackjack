@@ -18,6 +18,7 @@
 	* Player's score
 	* Dealer's score
 * Buttons
+	* Deal
 	* Hit
 	* Stand
 	* Replay
@@ -32,8 +33,6 @@
 * AUU, I can choose to play again or stop.
 
 ## Features list
-* Buttons for preset betting amounts
-* Total betting amount
 * Score
 	* Player
 	* Dealer
@@ -49,21 +48,20 @@
 * Allow the ability to bet, double down, and surrender.
 
 ## Pseudocode
-* Start the game by dealing a deck of cards
+* Start the game by dealing a deck of cards from the DEAL button
 	* Player 1 receives 2 cards facing up
 	* Dealer receives 1 card facing down and 1 card facing up
-
 * Total Scores of Player 1 and Dealer are shown
-
+* Player 1 can either click HIT or STAND Button
 * HIT Button
 	* Receive a random card
-	* If sum of Player 1's cards > than 21, then Player 1 bust.
+	* If sum of Player 1's cards > than 21, then Player 1 busts and REPLAY button appears
+	* If sum of Player 1's cards = 21, then Player 1 wins.
 	* If sum of Player 1's cards < than 21, then Player 1 can HIT or STAND.
-	* If sum of Player 1's cards = 21, then WINNER.
 * STAND Button
 	* The Dealer shows their 2nd card
-	* If the sum of Dealer's cards is <= 16, then DEALER must HIT until value == 17
-		* asdf
-		* asdf
-		* asdf
-		* adsf
+	* If the sum of Dealer's cards is <= 16, then DEALER must HIT until value is >= 17 or == 21.
+	* If sum of Dealer's cards = 21, the Dealer wins.
+	* If sum of Dealer's cards > than 21, then Dealer bust and REPLAY button appears.
+* REPLAY Button
+	* Restarts the game
