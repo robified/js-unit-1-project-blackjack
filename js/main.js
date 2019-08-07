@@ -1,5 +1,5 @@
 /*----- constants -----*/ 
-let deck, dealer, p1, dtotal, ptotal;
+let deck;
 
 class Player {
     constructor(score, hand, name) {
@@ -10,7 +10,7 @@ class Player {
 };
 
 /*----- app's state (variables) -----*/ 
-
+let dealer, p1, dtotal, ptotal;
 
 /*----- cached element references -----*/ 
 let dcard = document.getElementById('dcard');
@@ -191,6 +191,9 @@ function replay() {
     butDeal.removeAttribute("disabled", '');
     butHit.removeAttribute('disabled');
     butStand.removeAttribute('disabled');
+    pscoreEl.style.color = 'black';
+    dscoreEl.style.color = 'black';
+    messageEl.textContent = 'Click DEAL to start!';
     init();
 };
 
