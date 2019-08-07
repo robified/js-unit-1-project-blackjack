@@ -1,5 +1,5 @@
 /*----- constants -----*/ 
-let deck, dealer, p1;
+let deck, dealer, p1, dtotal, ptotal;
 
 class Player {
     constructor(score, hand) {
@@ -57,19 +57,25 @@ function init() { // to start off the game
     shuffleDeck(deck);
     p1 = new Player('0', []);
     dealer = new Player('0', []);
-    dcard.textContent = '';
-    pcard.textContent = '';
+    dtotal = 0;
+    ptotal = 0;
     dscoreEl.textContent = '0';
     pscoreEl.textContent = '0';
+    dcard.textContent = '';
+    pcard.textContent = '';
 };
 
 function deal() { // removes a random card from deck array
-    getCards(p1, 2);
     getCards(dealer, 2);
-    showScore(p1, pscoreEl);
-    showScore(dealer, dscoreEl);
+    dtotal = showScore(dealer, dtotal, dscoreEl);
+    checkWinner(dtotal);
     showHand(dealer, dcard);
-    showHand(p1, pcard);
+
+    getCards(p1, 2);
+    ptotal = showScore(p1, ptotal, pscoreEl);
+    showHand(p1, pcard);    
+    checkWinner(ptotal);
+    butDeal.setAttribute("disabled", '');
 };
 
 function getCards(player, num){
@@ -79,37 +85,83 @@ function getCards(player, num){
 
 function showHand(player, element) {
     for (let i = 0; i < player.hand.length; i++){
-        let createP = document.createElement('p')
-        createP.textContent = player.hand[i].cardName;
-        element.appendChild(createP);
+        let createSpan = document.createElement('span')
+        createSpan.textContent = player.hand[i].cardName + '. ';
+        element.appendChild(createSpan);
     }
 };
 
-function showScore(player, element) {
-    for (let i = 0; i < player.hand.length; i++){
+function showScore(player, playerTotal, element) {
+    for (let i = 0; i < player.hand.length; i++){  
+        switch (player.hand[i].value) {
+            case "Ace":
+                playerTotal += 11;
+                break;
+            case "2":
+                playerTotal += 2;
+                break;
+            case "3":
+                playerTotal += 3;
+                break;
+            case "4":
+                playerTotal += 4;
+                break;
+            case "5":
+                playerTotal += 5;
+                break;
+            case "6":
+                playerTotal += 6;
+                break;
+            case "7":
+                playerTotal += 7;
+                break;
+            case "8":
+                playerTotal += 8;
+                break;
+            case "9":
+                playerTotal += 9;
+                break;
+            case "10":
+                playerTotal += 10;
+                break;
+            case "Jack":
+                playerTotal += 10;
+                break;
+            case "Queen":
+                playerTotal += 10;
+                break;
+            case "King":
+                playerTotal += 10;
+        }
+    }
+    element.textContent = playerTotal;
+    return playerTotal;
+};
 
-        element.textContent = player.hand[i].value;
+function checkWinner(playerTotal) {
+    if (playerTotal > 21) {
+        butDeal.setAttribute("disabled", '');
+        butHit.setAttribute("disabled", '');
+        butStand.setAttribute("disabled", '');
     }
 };
 
+function replay() {
+    butDeal.removeAttribute("disabled", '');
+    butHit.removeAttribute('disabled');
+    butStand.removeAttribute('disabled');
+    init();
+};
+
+function hit() {
+    getCards(p1, 1);
+    ptotal = showScore(p1, ptotal, pscoreEl);
+    showHand(p1, pcard);    
+    checkWinner(ptotal);
+};
+
+// // For player 1 to stop receiving a card
+//     function stand() {
+
+//     };
 init();
-
-// To calculate player 1's points
-function calculateScore() {
-    If 
-        value = Ace, then = 1 or 11
-        value = Jack/Queen/King = 10
-    };
-
-    
-
-// For player 1 to stop receiving a card
-    function stand() {
-
-    };
-
-
-// For player 1 to restart
-    function replay() {
-        init();
-    };
