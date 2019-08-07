@@ -65,6 +65,8 @@ function init() { // to start off the game
     pscoreEl.textContent = '0';
     dcard.textContent = '';
     pcard.textContent = '';
+    butHit.setAttribute('disabled', '');
+    butStand.setAttribute('disabled', '');
 };
 
 function deal() { // removes a random card from deck array
@@ -78,11 +80,14 @@ function deal() { // removes a random card from deck array
     
 
     butDeal.setAttribute('disabled', '');
+    butHit.removeAttribute('disabled');
+    butStand.removeAttribute('disabled');
+    
     messageEl.textContent = 'HIT or STAND?';
     dscoreEl.style.visibility = 'hidden';
     document.getElementById('0Dealer').style.visibility = 'hidden';
-    checkWinner(dtotal, dscoreEl, pscoreEl, dealer);
-    checkWinner(ptotal, pscoreEl, dscoreEl, p1);
+    checkWinner(dtotal, dscoreEl, pscoreEl, dealer, p1);
+    checkWinner(ptotal, pscoreEl, dscoreEl, p1, dealer);
 };
 
 function getCards(player, num){
@@ -146,8 +151,7 @@ function showScore(player, playerTotal, element) {
     return playerTotal;
 };
 
-checkWinner(dtotal, dscoreEl, pscoreEl, dealer);
-function checkWinner(playerTotal, playerScoreEl, opponentScoreEl, player) {
+function checkWinner(playerTotal, playerScoreEl, opponentScoreEl, player, opponent) {
     if (playerTotal == 21) {
         messageEl.textContent = player.name + ' wins!';
         
@@ -160,19 +164,27 @@ function checkWinner(playerTotal, playerScoreEl, opponentScoreEl, player) {
         butDeal.setAttribute("disabled", '');
         butHit.setAttribute("disabled", '');
         butStand.setAttribute("disabled", '');    
+    } if (playerTotal > 21) {
+        messageEl.textContent = opponent.name + ' wins!';
+        
+        playerScoreEl.style.color = 'red';
+        opponentScoreEl.style.color = 'green';
+        
+        dscoreEl.style.visibility = '';
+        document.getElementById('0Dealer').style.visibility = '';
+    
+        butDeal.setAttribute("disabled", '');
+        butHit.setAttribute("disabled", '');
+        butStand.setAttribute("disabled", '');  
     }
 };
-
-function unhide() {
-    
-}
 
 
 function hit() {
     getCards(p1, 1);
     ptotal = showScore(p1, ptotal, pscoreEl);
     showHand(p1, pcard);
-    checkWinner(ptotal, pscoreEl, dscoreEl, p1);
+    checkWinner(ptotal, pscoreEl, dscoreEl, p1, dealer);
 };
 
 function replay() {
