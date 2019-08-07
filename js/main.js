@@ -70,13 +70,13 @@ function init() { // to start off the game
 function deal() { // removes a random card from deck array
     getCards(dealer, 2);
     dtotal = showScore(dealer, dtotal, dscoreEl);
-    checkWinner(dealer, dtotal);
+    checkWinner(dtotal, dscoreEl, pscoreEl);
     showHand(dealer, dcard);
 
     getCards(p1, 2);
     ptotal = showScore(p1, ptotal, pscoreEl);
     showHand(p1, pcard);    
-    checkWinner(p1, ptotal);
+    checkWinner(ptotal, pscoreEl, dscoreEl);
     butDeal.setAttribute("disabled", '');
 };
 
@@ -140,14 +140,14 @@ function showScore(player, playerTotal, element) {
     return playerTotal;
 };
 
-function checkWinner(player, playerTotal) {
+function checkWinner(playerTotal, element, opponent, message) {
     if (playerTotal == 21) {
         butDeal.setAttribute("disabled", '');
         butHit.setAttribute("disabled", '');
         butStand.setAttribute("disabled", '');
         element.style.color = 'green';
-        dscoreEl.style.color = 'red';
-        messageEl.textContent = player.cardName;
+        opponent.style.color = 'red';
+        message.textContent = 
     } 
 };
 
