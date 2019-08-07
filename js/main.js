@@ -141,13 +141,13 @@ function showScore(player, playerTotal, element) {
 };
 
 function checkWinner(player, playerTotal) {
-    if (playerTotal = 21) {
+    if (playerTotal == 21) {
         butDeal.setAttribute("disabled", '');
         butHit.setAttribute("disabled", '');
         butStand.setAttribute("disabled", '');
-        pscoreEl.style.color = 'green';
+        element.style.color = 'green';
         dscoreEl.style.color = 'red';
-
+        messageEl.textContent = player.cardName;
     } 
 };
 
