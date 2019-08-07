@@ -2,9 +2,10 @@
 let deck, dealer, p1, dtotal, ptotal;
 
 class Player {
-    constructor(score, hand) {
+    constructor(score, hand, name) {
         this.score = score;
         this.hand = hand;
+        this.name = name;
     }
 };
 
@@ -23,6 +24,7 @@ let butHit = document.getElementById('hit');
 let butStand = document.getElementById('stand');
 let butReplay = document.getElementById('replay');
 
+let messageEl = document.querySelector('h4');
 
 /*----- event listeners -----*/ 
 butDeal.addEventListener('click', deal);
@@ -55,8 +57,8 @@ function shuffleDeck(deck) {
 function init() { // to start off the game
     deck = makeADeck();
     shuffleDeck(deck);
-    p1 = new Player('0', []);
-    dealer = new Player('0', []);
+    p1 = new Player('0', [], 'Player 1');
+    dealer = new Player('0', []), 'Dealer';
     dtotal = 0;
     ptotal = 0;
     dscoreEl.textContent = '0';
@@ -68,13 +70,13 @@ function init() { // to start off the game
 function deal() { // removes a random card from deck array
     getCards(dealer, 2);
     dtotal = showScore(dealer, dtotal, dscoreEl);
-    checkWinner(dtotal);
+    checkWinner(dealer, dtotal);
     showHand(dealer, dcard);
 
     getCards(p1, 2);
     ptotal = showScore(p1, ptotal, pscoreEl);
     showHand(p1, pcard);    
-    checkWinner(ptotal);
+    checkWinner(p1, ptotal);
     butDeal.setAttribute("disabled", '');
 };
 
@@ -138,19 +140,15 @@ function showScore(player, playerTotal, element) {
     return playerTotal;
 };
 
-function checkWinner(playerTotal) {
-    if (playerTotal > 21) {
+function checkWinner(player, playerTotal) {
+    if (playerTotal = 21) {
         butDeal.setAttribute("disabled", '');
         butHit.setAttribute("disabled", '');
         butStand.setAttribute("disabled", '');
-    }
-};
+        pscoreEl.style.color = 'green';
+        dscoreEl.style.color = 'red';
 
-function replay() {
-    butDeal.removeAttribute("disabled", '');
-    butHit.removeAttribute('disabled');
-    butStand.removeAttribute('disabled');
-    init();
+    } 
 };
 
 function hit() {
@@ -158,6 +156,13 @@ function hit() {
     ptotal = showScore(p1, ptotal, pscoreEl);
     showHand(p1, pcard);    
     checkWinner(ptotal);
+};
+
+function replay() {
+    butDeal.removeAttribute("disabled", '');
+    butHit.removeAttribute('disabled');
+    butStand.removeAttribute('disabled');
+    init();
 };
 
 // // For player 1 to stop receiving a card
