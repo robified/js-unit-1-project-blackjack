@@ -1,10 +1,10 @@
 /*----- constants -----*/ 
-let deck, dealer, dscore, pscore, p1; 
+let deck, dealer, p1;
 
 class Player {
-    constructor(score, cardInHand) {
+    constructor(score, hand) {
         this.score = score;
-        this.cardInHand = cardInHand;
+        this.hand = hand;
     }
 };
 
@@ -12,22 +12,11 @@ class Player {
 
 
 /*----- cached element references -----*/ 
-let dcard1 = document.getElementById('dcard1');
-let dcard2 = document.getElementById('dcard2');
-let dcard3 = document.getElementById('dcard3');
-let dcard4 = document.getElementById('dcard4');
-let dcard5 = document.getElementById('dcard5');
-let dcard6 = document.getElementById('dcard6');
+let dcard = document.getElementById('dcard');
+let pcard = document.getElementById('pcard');
 
 let dscoreEl = document.getElementById('dscore');
 let pscoreEl = document.getElementById('pscore');
-
-let pcard1 = document.getElementById('pcard1');
-let pcard2 = document.getElementById('pcard2');
-let pcard3 = document.getElementById('pcard3');
-let pcard4 = document.getElementById('pcard4');
-let pcard5 = document.getElementById('pcard5');
-let pcard6 = document.getElementById('pcard6');
 
 let butDeal = document.getElementById('deal');
 let butHit = document.getElementById('hit');
@@ -35,18 +24,14 @@ let butStand = document.getElementById('stand');
 let butReplay = document.getElementById('replay');
 
 
-
 /*----- event listeners -----*/ 
-butDeal.addEventListener('click', init);
+butDeal.addEventListener('click', deal);
+butHit.addEventListener('click', hit);
+butStand.addEventListener('click', stand);
+butReplay.addEventListener('click', replay);
+
 
 /*----- functions -----*/
-function init() { // to start off the game
-    deck = makeADeck();
-    p1 = new Player('0', []);
-    dealer = new Player('0', []);
-    render();
-};
-
 function makeADeck() { // to make the deck
     let deck = [];
     let suits = ['Hearts', 'Spades', 'Clubs', 'Diamonds'];
@@ -60,53 +45,63 @@ function makeADeck() { // to make the deck
     return deck;
 };
 
-function render() { // might need more than one render fn, not sure yet
-    dscore = dealer.score;
-    ddeck = dealer.cardInHand;
-    dscoreEl.textContent = dscore;
-    dcard1.textContent = ddeck;
-
-    pscore = p1.score;
-    pdeck = p1.cardInHand
-    pscoreEl.textContent = pscore;
-    pcard1.textContent = ddeck;
+function shuffleDeck(deck) {
+    for (let i = deck.length - 1; i > 0; i--) {
+        const randomInt = Math.floor(Math.random() * (i + 1));
+        [deck[i], deck[randomInt]] = [deck[randomInt], deck[i]];
+    }
 };
 
-function deal() {
-    let removeOneCards = deck.splice(`${Math.floor(Math.random() * deck.length)}`, 1); // removes one random card
-    let removeTwoCards = deck.splice(`${Math.floor(Math.random() * deck.length)}`, 2); // removes two random card
-    dealer.cardInHand.push(removeOneCards);
-    p1.cardInHand.push(removeTwoCards);    
-    render();    
+function init() { // to start off the game
+    deck = makeADeck();
+    shuffleDeck(deck);
+    p1 = new Player('0', []);
+    dealer = new Player('0', []);
+    dcard.textContent = '';
+    pcard.textContent = '';
+    dscoreEl.textContent = '0';
+    pscoreEl.textContent = '0';
 };
 
-function removeACard(){ // removes a random card from deck array
-    
-}
+function deal() { // removes a random card from deck array
+    getCards(p1, 2);
+    getCards(dealer, 2);
+    showScore(p1, pscoreEl);
+    showScore(dealer, dscoreEl);
+    showHand(dealer, dcard);
+    showHand(p1, pcard);
+};
 
+function getCards(player, num){
+    let remove = deck.splice(0, num); // removes one random card
+    player.hand = remove;
+};
 
+function showHand(player, element) {
+    for (let i = 0; i < player.hand.length; i++){
+        let createP = document.createElement('p')
+        createP.textContent = player.hand[i].cardName;
+        element.appendChild(createP);
+    }
+};
 
+function showScore(player, element) {
+    for (let i = 0; i < player.hand.length; i++){
 
+        element.textContent = player.hand[i].value;
+    }
+};
 
-
-// "Press the start button to start."
-    function start() {
-
-    };
-    
-    
-// For player 1 to receive a random card
-    function hit() {
-
-    };
+init();
 
 // To calculate player 1's points
-    function calculate() {
-// If 
-//     value = Ace, then = 1 or 11
-//     value = Jack/Queen/King = 10
-
+function calculateScore() {
+    If 
+        value = Ace, then = 1 or 11
+        value = Jack/Queen/King = 10
     };
+
+    
 
 // For player 1 to stop receiving a card
     function stand() {
@@ -116,5 +111,5 @@ function removeACard(){ // removes a random card from deck array
 
 // For player 1 to restart
     function replay() {
-
+        init();
     };
