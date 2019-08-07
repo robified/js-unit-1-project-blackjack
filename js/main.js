@@ -58,7 +58,7 @@ function init() { // to start off the game
     deck = makeADeck();
     shuffleDeck(deck);
     p1 = new Player('0', [], 'Player 1');
-    dealer = new Player('0', []), 'Dealer';
+    dealer = new Player('0', [], 'Dealer');
     dtotal = 0;
     ptotal = 0;
     dscoreEl.textContent = '0';
@@ -70,14 +70,19 @@ function init() { // to start off the game
 function deal() { // removes a random card from deck array
     getCards(dealer, 2);
     dtotal = showScore(dealer, dtotal, dscoreEl);
-    checkWinner(dtotal, dscoreEl, pscoreEl);
     showHand(dealer, dcard);
 
     getCards(p1, 2);
     ptotal = showScore(p1, ptotal, pscoreEl);
     showHand(p1, pcard);    
-    checkWinner(ptotal, pscoreEl, dscoreEl);
-    butDeal.setAttribute("disabled", '');
+    
+
+    butDeal.setAttribute('disabled', '');
+    messageEl.textContent = 'HIT or STAND?';
+    dscoreEl.style.visibility = 'hidden';
+    document.getElementById('0Dealer').style.visibility = 'hidden';
+    checkWinner(dtotal, dscoreEl, pscoreEl, dealer);
+    checkWinner(ptotal, pscoreEl, dscoreEl, p1);
 };
 
 function getCards(player, num){
@@ -85,9 +90,10 @@ function getCards(player, num){
     player.hand = remove;
 };
 
-function showHand(player, element) {
+function showHand(player, element, name) {
     for (let i = 0; i < player.hand.length; i++){
-        let createSpan = document.createElement('span')
+        let createSpan = document.createElement('span');
+        createSpan.id = `${i}${player.name}`;
         createSpan.textContent = player.hand[i].cardName + '. ';
         element.appendChild(createSpan);
     }
@@ -140,22 +146,33 @@ function showScore(player, playerTotal, element) {
     return playerTotal;
 };
 
-function checkWinner(playerTotal, element, opponent, message) {
+checkWinner(dtotal, dscoreEl, pscoreEl, dealer);
+function checkWinner(playerTotal, playerScoreEl, opponentScoreEl, player) {
     if (playerTotal == 21) {
+        messageEl.textContent = player.name + ' wins!';
+        
+        playerScoreEl.style.color = 'green';
+        opponentScoreEl.style.color = 'red';
+        
+        dscoreEl.style.visibility = '';
+        document.getElementById('0Dealer').style.visibility = '';
+    
         butDeal.setAttribute("disabled", '');
         butHit.setAttribute("disabled", '');
-        butStand.setAttribute("disabled", '');
-        element.style.color = 'green';
-        opponent.style.color = 'red';
-        message.textContent = 
-    } 
+        butStand.setAttribute("disabled", '');    
+    }
 };
+
+function unhide() {
+    
+}
+
 
 function hit() {
     getCards(p1, 1);
     ptotal = showScore(p1, ptotal, pscoreEl);
-    showHand(p1, pcard);    
-    checkWinner(ptotal);
+    showHand(p1, pcard);
+    checkWinner(ptotal, pscoreEl, dscoreEl, p1);
 };
 
 function replay() {
