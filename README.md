@@ -60,7 +60,7 @@
 * STAND Button
 	* The Dealer shows their 2nd card
 	* If the sum of Dealer's cards is < 16, then DEALER must HIT until value is >= 17 or == 21.
-	* If sum of Dealer's cards == 21, the Dealer wins.
+	* If sum of Dealer's cards == 21, or Dealer score higher than Player 1, but under 21 points, then the Dealer wins.
 	* If sum of Dealer's cards > than 21, then Dealer bust and only REPLAY button is allowed.
 * REPLAY Button
 	* Restarts the game
