@@ -94,16 +94,6 @@ function getCards(player, num){
     player.hand = remove;
 };
 
-function showHand(player, element, name) {
-    for (let i = 0; i < player.hand.length; i++){
-        let createImg = document.createElement('img');
-        createImg.id = `${i}${player.name}`;
-        createImg.src = player.hand[i].cardImage;
-        createImg.width = 80;
-        element.appendChild(createImg);
-    }
-};
-
 function showScore(player, playerTotal, element) {
     for (let i = 0; i < player.hand.length; i++){  
         switch (player.hand[i].value) {
@@ -149,6 +139,16 @@ function showScore(player, playerTotal, element) {
     }
     element.textContent = playerTotal;
     return playerTotal;
+};
+
+function showHand(player, element, name) {
+    for (let i = 0; i < player.hand.length; i++){
+        let createImg = document.createElement('img');
+        createImg.id = `${i}${player.name}`;
+        createImg.src = player.hand[i].cardImage;
+        createImg.width = 80;
+        element.appendChild(createImg);
+    }
 };
 
 function checkWinner(playerTotal, playerScoreEl, opponentScoreEl, player, opponent) {
@@ -208,8 +208,8 @@ function stand() {
         getCards(dealer, 1);
         dtotal = showScore(dealer, dtotal, dscoreEl);
         showHand(dealer, dcard);
-        checkWinner(dtotal, dscoreEl, pscoreEl, dealer, p1);   
-    };
+        checkWinner(dtotal, dscoreEl, pscoreEl, dealer, p1); 
+    }
     if (dtotal > ptotal) {
         messageEl.textContent = 'Dealer wins!';
         dscoreEl.style.color = 'green';
@@ -219,7 +219,16 @@ function stand() {
         butHit.setAttribute("disabled", '');
         butStand.setAttribute("disabled", ''); 
         checkWinner(dtotal, dscoreEl, pscoreEl, dealer, p1);   
-    } else if (dtotal = ptotal) {
+    } else if (dtotal < ptotal) {
+        messageEl.textContent = 'Player 1 wins!';
+        pscoreEl.style.color = 'green';
+        dscoreEl.style.color = 'red';
+
+        butDeal.setAttribute("disabled", '');
+        butHit.setAttribute("disabled", '');
+        butStand.setAttribute("disabled", ''); 
+        checkWinner(ptotal, pscoreEl, dscoreEl, p1, dealer);
+    } else {
         messageEl.textContent = 'YAS! PUSH! YAS!';
         dscoreEl.style.color = 'blue';
         pscoreEl.style.color = 'blue';
