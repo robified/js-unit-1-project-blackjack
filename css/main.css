@@ -27,7 +27,6 @@ main {
     display: flex;
     flex-direction: row;
     justify-content: center;
-    margin: 20px;
 }
 
 .messaging {
@@ -39,7 +38,6 @@ main {
 .pcard {
     display: flex;
     justify-content: center;
-    margin: 20px;
 }
 
 .player {

@@ -41,7 +41,7 @@ function makeADeck() { // to make the deck
 
     suits.forEach(function(suit){
         values.forEach(function(value){
-            deck.push({suit: `${suit}`, value: `${value}`, cardName: `${value} of ${suit}`, cardImage: `${suit}${value}.jpg`});
+            deck.push({suit: `${suit}`, value: `${value}`, cardName: `${value} of ${suit}`, cardImage: `img/${suit}${value}.png`});
         })
     }); 
     return deck;
@@ -78,7 +78,6 @@ function deal() { // removes a random card from deck array
     ptotal = showScore(p1, ptotal, pscoreEl);
     showHand(p1, pcard);    
     
-
     butDeal.setAttribute('disabled', '');
     butHit.removeAttribute('disabled');
     butStand.removeAttribute('disabled');
@@ -97,10 +96,11 @@ function getCards(player, num){
 
 function showHand(player, element, name) {
     for (let i = 0; i < player.hand.length; i++){
-        let createSpan = document.createElement('span');
-        createSpan.id = `${i}${player.name}`;
-        createSpan.textContent = player.hand[i].cardName + '. ';
-        element.appendChild(createSpan);
+        let createImg = document.createElement('img');
+        createImg.id = `${i}${player.name}`;
+        createImg.src = player.hand[i].cardImage;
+        createImg.width = 80;
+        element.appendChild(createImg);
     }
 };
 
@@ -164,7 +164,7 @@ function checkWinner(playerTotal, playerScoreEl, opponentScoreEl, player, oppone
         butDeal.setAttribute("disabled", '');
         butHit.setAttribute("disabled", '');
         butStand.setAttribute("disabled", '');    
-    } if (playerTotal > 21) {
+    } else if (playerTotal > 21) {
         messageEl.textContent = opponent.name + ' wins!';
         
         playerScoreEl.style.color = 'red';
@@ -176,9 +176,8 @@ function checkWinner(playerTotal, playerScoreEl, opponentScoreEl, player, oppone
         butDeal.setAttribute("disabled", '');
         butHit.setAttribute("disabled", '');
         butStand.setAttribute("disabled", '');  
-    }
+    }  
 };
-
 
 function hit() {
     getCards(p1, 1);
@@ -197,8 +196,39 @@ function replay() {
     init();
 };
 
-// // For player 1 to stop receiving a card
-//     function stand() {
+function stand() {
+    butHit.setAttribute("disabled", '');
+    dscoreEl.style.visibility = '';
+    document.getElementById('0Dealer').style.visibility = '';
+    getCards(dealer, 1);
+    dtotal = showScore(dealer, dtotal, dscoreEl);
+    showHand(dealer, dcard);
+    checkWinner(dtotal, dscoreEl, pscoreEl, dealer, p1);   
+    while (dtotal < 17) {
+        getCards(dealer, 1);
+        dtotal = showScore(dealer, dtotal, dscoreEl);
+        showHand(dealer, dcard);
+        checkWinner(dtotal, dscoreEl, pscoreEl, dealer, p1);   
+    };
+    if (dtotal > ptotal) {
+        messageEl.textContent = 'Dealer wins!';
+        dscoreEl.style.color = 'green';
+        pscoreEl.style.color = 'red';
 
-//     };
+        butDeal.setAttribute("disabled", '');
+        butHit.setAttribute("disabled", '');
+        butStand.setAttribute("disabled", ''); 
+        checkWinner(dtotal, dscoreEl, pscoreEl, dealer, p1);   
+    } else if (dtotal = ptotal) {
+        messageEl.textContent = 'YAS! PUSH! YAS!';
+        dscoreEl.style.color = 'blue';
+        pscoreEl.style.color = 'blue';
+
+        butDeal.setAttribute("disabled", '');
+        butHit.setAttribute("disabled", '');
+        butStand.setAttribute("disabled", ''); 
+        checkWinner(dtotal, dscoreEl, pscoreEl, dealer, p1);   
+    }
+};
+
 init();
