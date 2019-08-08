@@ -1,20 +1,21 @@
 # Blackjack Card Game
 
 ## Intro
-* This is a blackjack browser-based card game. 
+* This is a modified blackjack browser-based card game. 
+* [Blackjack!](https://robified.github.io/unit-1-project/)
 
-## Objective
-* The objective of the game is for the player to obtain 21 points or get as close to 21 points as possible. 
-* The player loses if they collect over 21 points or the dealer's hand is closer to 21 points than the player.
-* House rule: ace cards count as 11 points.
+## Screenshots
+![](https://i.imgur.com/ozjvA9U.png)
+---
+![](https://i.imgur.com/lCz86jl.png)
 
 ## Technology used
 * HTML, CSS, JavaScript.
 
-## Wireframes
-![](https://i.imgur.com/ozjvA9U.png)
----
-![](https://i.imgur.com/lCz86jl.png)
+## Getting Started
+* The objective of the game is for the player to obtain 21 points or get as close to 21 points as possible. 
+* The player loses if they collect over 21 points or the dealer's hand is closer to 21 points than the player.
+* House rule: ace cards count as 11 points.
 
 ## User stories
 * As a user (AAU), I will receive 2 random cards from the dealer.
