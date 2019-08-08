@@ -190,9 +190,11 @@ function stand() {
     butHit.setAttribute("disabled", '');
     dscoreEl.style.visibility = '';
     document.getElementById('0Dealer').style.visibility = '';
+    
     getCards(dealer, 1);
     dtotal = showScore(dealer, dtotal, dscoreEl);
     showHand(dealer, dcard);
+    
     checkWinner(ptotal, pscoreEl, dscoreEl, p1, dealer);
     checkWinner(dtotal, dscoreEl, pscoreEl, dealer, p1);   
     while (dtotal < 17) {
@@ -200,6 +202,7 @@ function stand() {
         dtotal = showScore(dealer, dtotal, dscoreEl);
         showHand(dealer, dcard);
         checkWinner(dtotal, dscoreEl, pscoreEl, dealer, p1); 
+        checkWinner(ptotal, pscoreEl, dscoreEl, p1, dealer);
     }
     if (dtotal > ptotal) {
         messageEl.textContent = 'Dealer wins!';
