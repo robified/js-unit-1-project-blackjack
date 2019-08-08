@@ -4,10 +4,13 @@
 * This is a modified blackjack browser-based card game. 
 * [Blackjack!](https://robified.github.io/unit-1-project/)
 
+## Wireframe
+* [Skeleton Wireframe](https://i.imgur.com/Cuypo1G.jpg)
+
 ## Screenshots
-![](https://i.imgur.com/ozjvA9U.png)
+![Beginning Screen](https://i.imgur.com/tF9PxwS.png)
 ---
-![](https://i.imgur.com/lCz86jl.png)
+![Victory Screen](https://i.imgur.com/nq9PDmI.png)
 
 ## Technology used
 * HTML, CSS, JavaScript.
