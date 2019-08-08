@@ -186,16 +186,6 @@ function hit() {
     checkWinner(ptotal, pscoreEl, dscoreEl, p1, dealer);
 };
 
-function replay() {
-    butDeal.removeAttribute("disabled", '');
-    butHit.removeAttribute('disabled');
-    butStand.removeAttribute('disabled');
-    pscoreEl.style.color = 'black';
-    dscoreEl.style.color = 'black';
-    messageEl.textContent = 'Click DEAL to start!';
-    init();
-};
-
 function stand() {
     butHit.setAttribute("disabled", '');
     dscoreEl.style.visibility = '';
@@ -203,6 +193,7 @@ function stand() {
     getCards(dealer, 1);
     dtotal = showScore(dealer, dtotal, dscoreEl);
     showHand(dealer, dcard);
+    checkWinner(ptotal, pscoreEl, dscoreEl, p1, dealer);
     checkWinner(dtotal, dscoreEl, pscoreEl, dealer, p1);   
     while (dtotal < 17) {
         getCards(dealer, 1);
@@ -238,6 +229,16 @@ function stand() {
         butStand.setAttribute("disabled", ''); 
         checkWinner(dtotal, dscoreEl, pscoreEl, dealer, p1);   
     }
+};
+
+function replay() {
+    butDeal.removeAttribute("disabled", '');
+    butHit.removeAttribute('disabled');
+    butStand.removeAttribute('disabled');
+    pscoreEl.style.color = 'black';
+    dscoreEl.style.color = 'black';
+    messageEl.textContent = 'Click DEAL to start!';
+    init();
 };
 
 init();
