@@ -9,6 +9,7 @@ body {
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    background-color: #9DC44E;
 }
 
 main {
@@ -62,15 +63,22 @@ button:focus {
     outline: 0px;
 }
 
+h1 {
+    color: black;
+}
+
 h2 {
+    color: black;
     font-size: 15px;
     margin: 5px;
 }
 
 h3 {
     font-size: 10px;
+    color: black;
 }
 
 h4 {
     margin: 10px;
+    color: black;
 }

@@ -12,9 +12,9 @@
 * HTML, CSS, JavaScript.
 
 ## Wireframes
-![](https://i.imgur.com/T43Vni8.png)
+![](https://i.imgur.com/ozjvA9U.png)
 ---
-![](https://i.imgur.com/iG6IOKm.png)
+![](https://i.imgur.com/lCz86jl.png)
 
 ## User stories
 * As a user (AAU), I will receive 2 random cards from the dealer.
