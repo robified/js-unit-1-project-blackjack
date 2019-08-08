@@ -9,22 +9,25 @@ class Player {
     }
 };
 
+
 /*----- app's state (variables) -----*/ 
 let dealer, p1, dtotal, ptotal;
 
+
 /*----- cached element references -----*/ 
+let dscoreEl = document.getElementById('dscore');
+let pscoreEl = document.getElementById('pscore');
+
 let dcard = document.getElementById('dcard');
 let pcard = document.getElementById('pcard');
 
-let dscoreEl = document.getElementById('dscore');
-let pscoreEl = document.getElementById('pscore');
+let messageEl = document.querySelector('h4');
 
 let butDeal = document.getElementById('deal');
 let butHit = document.getElementById('hit');
 let butStand = document.getElementById('stand');
 let butReplay = document.getElementById('replay');
 
-let messageEl = document.querySelector('h4');
 
 /*----- event listeners -----*/ 
 butDeal.addEventListener('click', deal);
@@ -54,6 +57,7 @@ function shuffleDeck(deck) {
     }
 };
 
+
 function init() { // to start off the game
     deck = makeADeck();
     shuffleDeck(deck);
@@ -68,6 +72,7 @@ function init() { // to start off the game
     butHit.setAttribute('disabled', '');
     butStand.setAttribute('disabled', '');
 };
+
 
 function deal() { // removes a random card from deck array
     getCards(dealer, 2);
@@ -179,12 +184,14 @@ function checkWinner(playerTotal, playerScoreEl, opponentScoreEl, player, oppone
     }  
 };
 
+
 function hit() {
     getCards(p1, 1);
     ptotal = showScore(p1, ptotal, pscoreEl);
     showHand(p1, pcard);
     checkWinner(ptotal, pscoreEl, dscoreEl, p1, dealer);
 };
+
 
 function stand() {
     butHit.setAttribute("disabled", '');
@@ -234,6 +241,7 @@ function stand() {
     }
 };
 
+
 function replay() {
     butDeal.removeAttribute("disabled", '');
     butHit.removeAttribute('disabled');
@@ -243,5 +251,6 @@ function replay() {
     messageEl.textContent = 'Click DEAL to start!';
     init();
 };
+
 
 init();
