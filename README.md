@@ -6,24 +6,15 @@
 ## Objective
 * The objective of the game is for the player to obtain 21 points or get as close to 21 points as possible. 
 * The player loses if they collect over 21 points or the dealer's hand is closer to 21 points than the player.
+* House rule: ace cards count as 11 points.
 
 ## Technology used
 * HTML, CSS, JavaScript.
 
 ## Wireframes
-* Cards
-	* Player's card
-	* Dealer's card
-* Scores
-	* Player's score
-	* Dealer's score
-* Buttons
-	* Deal
-	* Hit
-	* Stand
-	* Replay
-* Outcome
-	* Win, Lose, or Tie
+![](https://i.imgur.com/T43Vni8.png)
+---
+![](https://i.imgur.com/iG6IOKm.png)
 
 ## User stories
 * As a user (AAU), I will receive 2 random cards from the dealer.
@@ -33,19 +24,23 @@
 * AUU, I can choose to play again or stop.
 
 ## Features list
-* Score
-	* Player
+* Players
+	* Player 1 
 	* Dealer
+* Total score for each player
 * Actions
+	* Deal
 	* Hit
 	* Stand
-* Outcomes
+	* Replay
+* Outcomes 
 	* Winning
 	* Losing
-	* Ties
+	* Tie
 
 ## Stretch goals 
 * Allow the ability to bet, double down, and surrender.
+* Ace can behave as a 1 or 11.
 
 ## Pseudocode
 * Start the game by dealing a deck of cards from the DEAL button
@@ -55,13 +50,13 @@
 * Player 1 can either click HIT or STAND Button
 * HIT Button
 	* Receive a random card
-	* If sum of Player 1's cards > than 21, then Player 1 busts and REPLAY button appears
+	* If sum of Player 1's cards > than 21, then Player 1 busts and only REPLAY button is allowed.
 	* If sum of Player 1's cards = 21, then Player 1 wins.
 	* If sum of Player 1's cards < than 21, then Player 1 can HIT or STAND.
 * STAND Button
 	* The Dealer shows their 2nd card
-	* If the sum of Dealer's cards is <= 16, then DEALER must HIT until value is >= 17 or == 21.
-	* If sum of Dealer's cards = 21, the Dealer wins.
-	* If sum of Dealer's cards > than 21, then Dealer bust and REPLAY button appears.
+	* If the sum of Dealer's cards is < 16, then DEALER must HIT until value is >= 17 or == 21.
+	* If sum of Dealer's cards == 21, the Dealer wins.
+	* If sum of Dealer's cards > than 21, then Dealer bust and only REPLAY button is allowed.
 * REPLAY Button
 	* Restarts the game
