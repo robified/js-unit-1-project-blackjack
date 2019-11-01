@@ -27,7 +27,7 @@
 * AAU, I either win or lose depending on the sum of my hand in comparison to the sum of the dealer's hand. The sum of either hand cannot go over 21 points.
 * AUU, I can choose to play again or stop.
 
-## Features list
+## Feature list
 * Players
 	* Player 1 
 	* Dealer
