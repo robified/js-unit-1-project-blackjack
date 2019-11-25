@@ -2,7 +2,6 @@
 
 ## Intro
 * This is a modified blackjack browser-based card game. 
-* [Blackjack!](https://robified.github.io/unit-1-project/)
 
 ## Wireframe
 * [Skeleton Wireframe](https://i.imgur.com/Cuypo1G.jpg)
